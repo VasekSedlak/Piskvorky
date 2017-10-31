@@ -1,6 +1,8 @@
 package piskvorky;
 
 import java.util.Scanner;
+
+//ST
 class Hrac{
     public String jmeno;
     public char znak;
@@ -8,7 +10,11 @@ class Hrac{
 }
 
 public class Piskvorky {
-
+ public static void vypis(String text, int iterace) {
+        for(int i = 0; i < iterace; i++) {
+            System.out.print(text);
+        }
+    }   
 public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     
@@ -16,7 +22,20 @@ public static void main(String[] args) {
     Hrac h2 = new Hrac();
     Hrac h3 = new Hrac();
     Hrac h4 = new Hrac();
-    
+     //misto pro promenne
+    int x = 10;
+    int y = 5;
+    int max = x*y;
+    char[][] pole = new char[y][x];
+    for(int i = 0; i < y; i++) {
+        for(int j = 0; j < x; j++) {
+            pole[i][j] = ' ';
+        }
+    }
+    boolean vyhra = false;
+    String[] postVypis = new String[y];
+   // Hrac[] hraci = new Hrac[4];
+    int hraci = 1;
     boolean bezi = true;
     int vyber;
     do{
@@ -32,6 +51,61 @@ public static void main(String[] args) {
     
     switch(vyber){
         case 1: //vlozit hru
+            
+            
+            
+            
+             do{//1 kolo / vsichni hraci
+        for(int i = 0; i < hraci; i++) { //zadani kazdeho jednotliveho hrace
+            boolean valid = true;
+            int input = -1;
+            do {
+                postVypis[2] = "Nyni hraje " + hraci + " se symbolem " + hraci;
+                     //VYKRESLIT POLE(vc. postVypis)
+                     for(int ay = 0; ay < y; ay++) {
+                         
+                         if(ay == 0) {
+                             System.out.print("|");
+                             vypis("--",x-1);
+                              System.out.print("-|");
+                         }
+                         else {
+                             System.out.print("|");
+                             vypis("-+",x-1);
+                             System.out.print("-|");
+                         }
+                     System.out.println();
+                           
+                        for(int ax = 0; ax < x; ax++) {
+
+                            System.out.print("|" + pole[ay][ax]);
+                        }
+                        System.out.print("|");
+                        System.out.println();
+                        if(ay == y-1) {
+                             System.out.print("|");
+                             vypis("--",x-1);
+                              System.out.print("-|");
+                         }
+                     }
+                     System.out.println();
+                     
+                     //KONEC VYKRESLENI
+            
+                if(input < 0 && input > max) valid = false;
+            }while(!valid);
+                
+        //otestovani vyhry
+        if(vyhra) break;
+        }
+        
+       
+        
+    }while(vyhra);
+            
+            
+            
+            
             break;
         case 2: System.out.println("Vyberte hráčovský profil, který chcete upravit");
                 System.out.println("1. Hráč 1");
@@ -55,41 +129,8 @@ public static void main(String[] args) {
             break;
         default: System.out.println("Neplatný výběr, zadejte platný vstup");
     }
-    /*
-    int x; int y;
-    
-    System.out.println("Zadejte velikost pole."); 
-    y = sc.nextInt();
-    x = 2*y;
-    
-    char[][] pole = new char[x][y];
-    int pom;
-    
-    for (int j = 0; j < pole[0].length; j++){
-        
-        for (int i = 0; i < pole.length; i++){
-            i++;
-            pom = i+1;
-            pole[i][j] = '|';
-            if(pom < pole.length){pole[pom][j] = '_';}
-        }
-    }
-    //pole[6][6] = '♣';
-    
-    for (int j = 0; j < pole[0].length; j++){
-        
-        for (int i = 0; i < pole.length; i++){
-            
-            System.out.print(pole[i][j]);
-        }
-    
-        
-        System.out.println();
-    
-    }*/
 }while(bezi);
     System.out.println("Vypínání...");
     }
 }
-    
-
+//END
